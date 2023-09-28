@@ -28,118 +28,121 @@ insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bo
 ```
 
 ### Q1) Update all the records of manager table by increasing 10% of their salary as bonus.
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```sql
+SQL> UPDATE manager
+  2  SET salary = salary + (salary * 0.10),
+  3  annualsalary = annualsalary + (annualsalary * 0.10);
+```
+#### OUTPUT:
+![](/exp2_DBMS-1.png)
 
 ### Q2) Delete the records from manager table where the salary less than 2750.
-
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```sql
+SQL> DELETE FROM manager WHERE salary < 2750;
+```
+#### OUTPUT:
+![](/exp2_DBMS-2.png)
 
 ### Q3) Display each name of the employee as “Name” and annual salary as “Annual Salary” (Note: Salary in emp table is the monthly salary)
-
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```sql
+SQL> SELECT ename AS "Name", salary * 12 AS "Annual Salary" FROM manager;
+```
+#### OUTPUT:
+![](/exp2_DBMS-3.png)
 
 ### Q5)	List the names of Clerks from emp table.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE designation = 'clerk';
+```
+#### OUTPUT:
+![](/exp2_DBMS-5.png)
 
 ### Q6)	List the names of employee who are not Managers.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE designation != 'manager';
+```
+#### OUTPUT:
+![](/exp2_DBMS-6.png)
 
 ### Q7)	List the names of employees not eligible for commission.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE commission = 0;
+```
+#### OUTPUT:
+![](/exp2_DBMS-7.png)
 
 ### Q8)	List employees whose name either start or end with ‘s’.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE ename LIKE 'S%' OR ename LIKE '%s';
+```
+#### OUTPUT:
+![](/exp2_DBMS-8.png)
 
 ### Q9) Sort emp table in ascending order by hire-date and list ename, job, deptno and hire-date.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename, designation, deptno, Hiredate FROM manager ORDER BY Hiredate ASC;
+```
+#### OUTPUT:
+![](/exp2_DBMS-9.png)
 
 ### Q10) List the Details of Employees who have joined before 30 Sept 81.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT * FROM manager WHERE Hiredate < TO_DATE('1981-09-30', 'YYYY-MM-DD');
+```
+#### OUTPUT:
+![](/exp2_DBMS-10.png)
 
 ### Q11)	List ename, deptno and sal after sorting emp table in ascending order by deptno and then descending order by sal.
-
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename, deptno, salary FROM manager ORDER BY deptno ASC;
+SQL> SELECT ename, deptno, salary FROM manager ORDER BY deptno DESC;
+```
+#### OUTPUT:
+![](/exp2_DBMS-11.png)
 
 ### Q12) List the names of employees not belonging to dept no 30,40 & 10
-
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```sql
+SQL> SELECT ename FROM manager WHERE deptno NOT IN (10,30,40);
+```
+#### OUTPUT:
+![](/exp2_DBMS-12.png)
 
 ### Q13) Find number of rows in the table EMP
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT count(*) FROM manager;
+```
+#### OUTPUT:
+![](/exp2_DBMS-13.png)
 
 ### Q14) Find maximum, minimum and average salary in EMP table.
-
-### QUERY:
-
-
-### OUTPUT:
-
+#### QUERY:
+```sql
+SQL> SELECT ename, salary, annualsalary FROM manager WHERE salary = (SELECT max(salary) FROM manager);
+SQL> SELECT ename, salary, annualsalary FROM manager WHERE salary = (SELECT min(salary) FROM manager);
+SQL> SELECT avg(salary) FROM manager;
+```
+#### OUTPUT:
+![](/exp2_DBMS-14.png)
 
 ### Q15) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
+#### QUERY:
+```sql
+SQL> SELECT designation, count(*) AS "Number of Employees" FROM manager GROUP BY designation ORDER BY count(*) DESC;
+```
+#### OUTPUT:
+![](/exp2_DBMS-15.png)
 
-### QUERY:
-
-
-### OUTPUT:
+## RESULT:
+Thus, Manager database is created and DML queries such as insertion, updation, deletion are executed using SQL.
